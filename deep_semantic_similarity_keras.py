@@ -39,7 +39,7 @@ neg_docs = [Input(shape = (None, WORD_DEPTH)) for j in range(J)]
 # query matrix (l_Q), adding a bias vector (b_c), and then applying the tanh function.
 # That is, h_Q = tanh(W_c • l_Q + b_c). With that being said, that's not actually
 # how the operation is being calculated here. To tie the weights of the weight
-# matrix (W_c) together, we have to use a one-dimensional convolutional layer. 
+# matrix (W_c) together, we have to use a one-dimensional convolutional layer.
 # Further, we have to transpose our query matrix (l_Q) so that time is the first
 # dimension rather than the second (as described in the paper). That is, l_Q[0, :]
 # represents our first word vector rather than l_Q[:, 0]. We can think of the weight
@@ -107,18 +107,18 @@ BATCH = True
 (query_len, doc_len) = (5, 100)
 
 for i in range(sample_size):
-    
+
     if BATCH:
         l_Q = np.random.rand(query_len, WORD_DEPTH)
         l_Qs.append(l_Q)
-        
+
         l_D = np.random.rand(doc_len, WORD_DEPTH)
         pos_l_Ds.append(l_D)
     else:
         query_len = np.random.randint(1, 10)
         l_Q = np.random.rand(1, query_len, WORD_DEPTH)
         l_Qs.append(l_Q)
-        
+
         doc_len = np.random.randint(50, 500)
         l_D = np.random.rand(1, doc_len, WORD_DEPTH)
         pos_l_Ds.append(l_D)
@@ -135,17 +135,17 @@ for i in range(sample_size):
 if BATCH:
     y = np.zeros((sample_size, J + 1))
     y[:, 0] = 1
-    
+
     l_Qs = np.array(l_Qs)
     pos_l_Ds = np.array(pos_l_Ds)
     for j in range(J):
         neg_l_Ds[j] = np.array(neg_l_Ds[j])
-    
+
     history = model.fit([l_Qs, pos_l_Ds] + [neg_l_Ds[j] for j in range(J)], y, epochs = 1, verbose = 0)
 else:
     y = np.zeros(J + 1).reshape(1, J + 1)
     y[0, 0] = 1
-    
+
     for i in range(sample_size):
         history = model.fit([l_Qs[i], pos_l_Ds[i]] + [neg_l_Ds[j][i] for j in range(J)], y, epochs = 1, verbose = 0)
 
@@ -170,3 +170,9 @@ if BATCH:
     get_R_Q_D_ns([l_Qs] + [neg_l_Ds[j] for j in range(J)])
 else:
     get_R_Q_D_ns([l_Qs[0]] + neg_l_Ds[0])
+
+# %%
+len(neg_l_Ds)
+l_Qs.shape
+neg_l_Ds[0].shape
+pos_l_Ds.shape
