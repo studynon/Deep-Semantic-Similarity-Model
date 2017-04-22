@@ -96,6 +96,7 @@ prob = Lambda(lambda x: backend.softmax(x), output_shape = (J + 1, ))(with_gamma
 model = Model(inputs = [query, pos_doc] + neg_docs, outputs = prob)
 model.compile(optimizer = "adadelta", loss = "categorical_crossentropy")
 
+# %% model has been set, blew test it
 # Build a random data set.
 sample_size = 10
 l_Qs = []
@@ -172,7 +173,18 @@ else:
     get_R_Q_D_ns([l_Qs[0]] + neg_l_Ds[0])
 
 # %%
+query_len
+WORD_DEPTH
+np.random.rand(1, query_len, WORD_DEPTH)[0]
+
+get_R_Q_D_p([l_Qs, pos_l_Ds])
+get_R_Q_D_ns([l_Qs] + [neg_l_Ds[j] for j in range(J)])
+
+R_Q_D_p
+get_R_Q_D_p
+
 len(neg_l_Ds)
+neg_l_Ds[0][0][0]
 l_Qs.shape
 neg_l_Ds[0].shape
 pos_l_Ds.shape
