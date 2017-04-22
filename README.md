@@ -1,6 +1,7 @@
 # My files
 clsm_keras_v2.py-----test tokenizer of keras and tflearn
-clsm_keras_v3.py-----use tflearn as tokenizer tool
+clsm_keras_v3.py-----make train data, havent fit model, use tflearn as tokenizer tool
+clsm_keras_v4.py-----add fit model, train and test
 
 # Deep Semantic Similarity Model
 My Keras implementation of the Deep Semantic Similarity Model (DSSM)/Convolutional Latent Semantic Model (CLSM) described [here](http://research.microsoft.com/pubs/226585/cikm2014_cdssm_final.pdf).

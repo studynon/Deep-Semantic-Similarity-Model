@@ -133,6 +133,11 @@ for i in range(sample_size):
         negative = negatives[j]
         neg_l_Ds[j].append(pos_l_Ds[negative])
 
+# %% check query doc shape
+l_Q.shape
+l_Q.T
+l_D.shape
+# %% model fit begin
 if BATCH:
     y = np.zeros((sample_size, J + 1))
     y[:, 0] = 1
