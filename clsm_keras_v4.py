@@ -10,6 +10,8 @@ from keras.layers.merge import concatenate, dot
 from keras.models import Model
 from keras.preprocessing.text import Tokenizer
 import tensorflow.contrib.learn as learn
+import tensorflow as tf
+# tf.contrib.tensor_forest.client.random_forest.TensorForestEstimator
 VocabularyProcessor = learn.preprocessing.VocabularyProcessor
 Q_len = 8
 D_len = 150
